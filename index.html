@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IT Study Planner AI — планировщик учебных задач студента.">
+  <title>IT Study Planner AI</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">PERSONAL STUDY WORKSPACE</span>
+        <h1>IT Study Planner<span> AI</span></h1>
+        <p>Управляй учебными задачами, расставляй приоритеты и отслеживай свой прогресс.</p>
+        <div class="hero-pills"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+      </div>
+      <div class="hero-symbol" aria-hidden="true"><span>✦</span></div>
+    </header>
+
+    <main>
+      <section class="stats-grid" aria-label="Статистика">
+        <article class="stat-card"><span class="stat-label">Всего задач</span><strong id="totalCount">0</strong><span class="stat-foot">В учебном плане</span></article>
+        <article class="stat-card"><span class="stat-label">Выполнено</span><strong id="completedCount">0</strong><span class="stat-foot">Уже сделано</span></article>
+        <article class="stat-card"><span class="stat-label">В работе</span><strong id="remainingCount">0</strong><span class="stat-foot">Ещё предстоит</span></article>
+      </section>
+
+      <section class="panel progress-panel">
+        <div class="progress-head">
+          <div><span class="eyebrow blue">ТВОЙ РЕЗУЛЬТАТ</span><h2>Прогресс обучения</h2><p>Небольшие шаги приводят к большим результатам.</p></div>
+          <strong id="progressPercent">0%</strong>
+        </div>
+        <div class="progress-track" id="progressTrack" role="progressbar" aria-label="Прогресс выполнения задач" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><div><span class="eyebrow blue">НОВАЯ ЗАПИСЬ</span><h2>Добавить задачу</h2></div><span class="section-icon">＋</span></div>
+        <form id="taskForm" class="task-form">
+          <div class="field field-wide">
+            <label for="taskInput">Название задачи</label>
+            <input id="taskInput" type="text" maxlength="120" placeholder="Например: изучить массивы JavaScript" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="categorySelect">Категория</label>
+            <select id="categorySelect"><option>HTML</option><option>CSS</option><option>JavaScript</option><option>Python</option><option>Другое</option></select>
+          </div>
+          <div class="field">
+            <label for="prioritySelect">Приоритет</label>
+            <select id="prioritySelect"><option value="high">Высокий</option><option value="medium" selected>Средний</option><option value="low">Низкий</option></select>
+          </div>
+          <button class="primary-btn" type="submit">Добавить задачу <span>＋</span></button>
+        </form>
+        <p id="formMessage" class="form-message" aria-live="polite">Заполни поля и добавь задачу в свой план.</p>
+      </section>
+
+      <section class="panel tasks-panel">
+        <div class="tasks-heading">
+          <div><span class="eyebrow blue">ПЛАНИРОВАНИЕ</span><h2>Мои задачи</h2></div>
+          <div class="toolbar">
+            <button id="exportButton" class="secondary-btn" type="button">↓ Экспорт CSV</button>
+            <button id="clearButton" class="text-btn" type="button">Очистить</button>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="filter-tabs" role="group" aria-label="Фильтр по статусу">
+            <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">Все</button>
+            <button class="filter-btn" type="button" data-filter="active" aria-pressed="false">Активные</button>
+            <button class="filter-btn" type="button" data-filter="completed" aria-pressed="false">Выполненные</button>
+          </div>
+          <div class="select-controls">
+            <label class="sr-only" for="categoryFilter">Фильтр по категории</label>
+            <select id="categoryFilter"><option value="all">Все категории</option><option>HTML</option><option>CSS</option><option>JavaScript</option><option>Python</option><option>Другое</option></select>
+            <label class="sr-only" for="sortSelect">Сортировка</label>
+            <select id="sortSelect"><option value="priority">По приоритету</option><option value="newest">Сначала новые</option><option value="oldest">Сначала старые</option><option value="name">По названию</option></select>
+          </div>
+        </div>
+
+        <ul id="taskList" class="task-list"></ul>
+        <div id="emptyState" class="empty-state"><span class="empty-symbol">✦</span><strong>Задач пока нет</strong><p>Добавь первую задачу — и начни планировать обучение.</p></div>
+      </section>
+    </main>
+    <footer><strong>IT Study Planner AI</strong><span>Учебный проект · HTML / CSS / JavaScript</span></footer>
+  </div>
+</body>
+</html>
